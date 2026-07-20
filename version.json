@@ -1,5 +1,5 @@
 {
-  "version": "1.1.5",
-  "download_url": "https://github.com/SanyaUW/spoofer/releases/download/v1.1.5/ByGoneSpoofer.exe",
-  "changelog": "🛡️ ПОЛНЫЙ ОБХОД SMARTSCREEN и DEFENDER\n✅ Авто-добавление в исключения\n🔧 Отключение SmartScreen\n🚀 Улучшена совместимость\n💡 Добавлена подробная инструкция"
+  "version": "1.1.6",
+  "download_url": "https://github.com/SanyaUW/spoofer/releases/download/v1.1.6/ByGoneSpoofer.exe",
+  "changelog": "🔐 ПОДПИСЬ EXE СЕРТИФИКАТОМ\n🛡️ Улучшен обход SmartScreen\n✅ Улучшена совместимость\n🚀 Исправлены ошибки"
 }
