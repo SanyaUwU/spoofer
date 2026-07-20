@@ -1,5 +1,5 @@
 {
   "version": "1.1.5",
-  "download_url": "https://github.com/SanyaUW/spoofer/releases/download/v1.1.4/ByGoneSpoofer.exe",
-  "changelog": "🛡️ АВТОМАТИЧЕСКОЕ ДОБАВЛЕНИЕ В ИСКЛЮЧЕНИЯ DEFENDER\n✅ Исправлена ошибка с win32api\n🔧 Улучшена диагностика\n🚀 Оптимизирована загрузка"
+  "download_url": "https://github.com/SanyaUW/spoofer/releases/download/v1.1.5/ByGoneSpoofer.exe",
+  "changelog": "🛡️ ПОЛНЫЙ ОБХОД SMARTSCREEN и DEFENDER\n✅ Авто-добавление в исключения\n🔧 Отключение SmartScreen\n🚀 Улучшена совместимость\n💡 Добавлена подробная инструкция"
 }
