@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ByGone Spoofer — Best Spoofer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 120px;
+        }
+        body {
+            background-color: #050507;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+        .background-fx {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(30, 25, 45, 0.4) 0%, transparent 40%),
+                radial-gradient(circle at 85% 30%, rgba(20, 30, 45, 0.3) 0%, transparent 40%),
+                radial-gradient(circle at 50% 100%, rgba(45, 20, 30, 0.2) 0%, transparent 50%);
+            overflow: hidden;
+        }
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.3;
+            transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
+            animation: gridMove 20s linear infinite;
+        }
+        @keyframes gridMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 50px; }
+        }
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200vw;
+            height: 200vh;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.8), rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 150px 70px, rgba(255,255,255,0.6), rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 250px 160px, rgba(255,255,255,0.9), rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 90px 240px, rgba(255,255,255,0.5), rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 330px 80px, rgba(255,255,255,0.7), rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 300px 300px;
+            animation: drift 120s linear infinite;
+            opacity: 0.3;
+        }
+        @keyframes drift {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-10%, -10%); }
+        }
+        .navbar-wrapper {
+            position: fixed;
+            top: 20px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            z-index: 100;
+            animation: slideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        @keyframes slideDown {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .navbar {
+            background: rgba(10, 10, 12, 0.6);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 50px;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 90%;
+            max-width: 1100px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+        }
+        .navbar:hover {
+            background: rgba(15, 15, 18, 0.8);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .nav-left img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            background-color: #ffffff;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+            border-radius: 2px;
+            opacity: 0;
+        }
+        .nav-links a:hover {
+            color: #ffffff;
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+            opacity: 1;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .lang-toggle {
+            display: flex;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 6px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .lang-btn {
+            color: #475569;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .lang-btn:hover {
+            color: #94a3b8;
+        }
+        .lang-active {
+            color: #ffffff;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+            pointer-events: none;
+        }
+        .nav-btn {
+            background: #ffffff;
+            color: #000000;
+            text-decoration: none;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: pulseWhite 2s infinite;
+        }
+        @keyframes pulseWhite {
+            0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+        }
+        .nav-btn:hover {
+            background: #f8fafc;
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.3);
+            animation: none;
+        }
+        .hero {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 160px 20px 80px;
+        }
+        .hero-logo {
+            width: 160px;
+            height: 160px;
+            margin-bottom: 40px;
+            border-radius: 32px;
+            box-shadow: 0 0 80px rgba(255, 255, 255, 0.05), inset 0 0 30px rgba(255, 255, 255, 0.05);
+            animation: pulseGlow 4s ease-in-out infinite, fadeInUp 1s ease forwards;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 40px rgba(255, 255, 255, 0.03); transform: scale(1); }
+            50% { box-shadow: 0 0 100px rgba(255, 255, 255, 0.12); transform: scale(1.03); }
+            100% { box-shadow: 0 0 40px rgba(255, 255, 255, 0.03); transform: scale(1); }
+        }
+        .hero h1 {
+            font-size: clamp(4rem, 8vw, 7rem);
+            font-weight: 800;
+            letter-spacing: -3px;
+            margin-bottom: 20px;
+            line-height: 1;
+            background: linear-gradient(180deg, #ffffff 0%, #64748b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease 0.2s forwards;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        .hero h2 {
+            font-size: clamp(1.4rem, 3vw, 2.5rem);
+            font-weight: 400;
+            color: #94a3b8;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.4s forwards;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: #64748b;
+            max-width: 650px;
+            margin-bottom: 50px;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease 0.6s forwards;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        .hero-buttons {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeInUp 1s ease 0.8s forwards;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .btn-primary {
+            background: #ffffff;
+            color: #000000;
+            text-decoration: none;
+            padding: 18px 40px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.15);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-primary:hover {
+            background: #f1f5f9;
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 255, 255, 0.25);
+        }
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 18px 40px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        .btn-text {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+        .btn-text:hover {
+            color: #ffffff;
+        }
+        .content-section {
+            position: relative;
+            z-index: 10;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 100px 20px;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .section-title.visible {
+            animation: fadeInUp 1s ease forwards;
+        }
+        .section-title h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+        .section-title p {
+            color: #64748b;
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+        .grid-modes {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            perspective: 1500px;
+        }
+        @media (min-width: 900px) {
+            .grid-modes { grid-template-columns: repeat(2, 1fr); }
+        }
+        .mode-card {
+            --accent: #ffffff;
+            --accent-rgb: 255, 255, 255;
+            background: linear-gradient(145deg, rgba(15, 15, 20, 0.8) 0%, rgba(5, 5, 8, 0.9) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px) translateZ(0);
+            transform-style: preserve-3d;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        .mode-card.visible {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        .mode-card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 31px;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.5) 0%, rgba(var(--accent-rgb), 0.05) 50%, transparent 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            opacity: 0.5;
+            transition: opacity 0.5s ease;
+        }
+        .mode-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(var(--accent-rgb), 0.1), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+            z-index: 1;
+            border-radius: 30px;
+        }
+        .mode-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.8), 
+                0 0 40px rgba(var(--accent-rgb), 0.15),
+                inset 0 0 20px rgba(var(--accent-rgb), 0.05);
+            z-index: 2;
+        }
+        .mode-card:hover::before {
+            opacity: 1;
+            background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.8) 0%, rgba(var(--accent-rgb), 0.2) 50%, transparent 100%);
+        }
+        .mode-card:hover::after { opacity: 1; }
+        .mode-basic { --accent: #22d3ee; --accent-rgb: 34, 211, 238; }
+        .mode-advanced { --accent: #facc15; --accent-rgb: 250, 204, 21; }
+        .mode-max { --accent: #f43f5e; --accent-rgb: 244, 63, 94; }
+        .mode-recovery { --accent: #a855f7; --accent-rgb: 168, 85, 247; }
+        .card-content {
+            position: relative;
+            z-index: 2;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            transform: translateZ(30px);
+        }
+        .mode-header {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+        .mode-header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 50px;
+            height: 1px;
+            background: var(--accent);
+            box-shadow: 0 0 10px var(--accent);
+            transition: width 0.5s ease;
+        }
+        .mode-card:hover .mode-header::after { width: 100%; }
+        .mode-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 15px rgba(var(--accent-rgb), 0.6));
+            transform: translateZ(40px);
+        }
+        .mode-icon svg {
+            width: 100%;
+            height: 100%;
+            stroke: var(--accent);
+        }
+        .mode-header h3 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--accent);
+            letter-spacing: -1px;
+            text-shadow: 0 0 20px rgba(var(--accent-rgb), 0.4);
+            transform: translateZ(30px);
+        }
+        .mode-header p {
+            font-size: 1rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .mode-list {
+            list-style: none;
+            flex-grow: 1;
+            transform: translateZ(20px);
+        }
+        .mode-list li {
+            margin-bottom: 18px;
+            padding-left: 36px;
+            position: relative;
+            font-size: 1.05rem;
+            color: #cbd5e1;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        .mode-card:hover .mode-list li { color: #f8fafc; }
+        .mode-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            border-radius: 4px;
+            background-color: rgba(var(--accent-rgb), 0.1);
+            border: 1px solid rgba(var(--accent-rgb), 0.5);
+            transition: all 0.3s ease;
+        }
+        .mode-list li::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 50%;
+            transform: translateY(-50%) rotate(45deg);
+            width: 4px;
+            height: 8px;
+            border-right: 2px solid var(--accent);
+            border-bottom: 2px solid var(--accent);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .mode-card:hover .mode-list li::before {
+            background-color: rgba(var(--accent-rgb), 0.2);
+            box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.3);
+        }
+        .mode-card:hover .mode-list li::after { opacity: 1; }
+        .list-highlight {
+            color: #ffffff;
+            font-weight: 800;
+            display: inline-block;
+            background: linear-gradient(90deg, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+        .grid-prices {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        @media (min-width: 800px) {
+            .grid-prices { grid-template-columns: repeat(4, 1fr); }
+        }
+        .price-box {
+            background: #09090b;
+            border: 1px solid #1a1a1c;
+            border-radius: 16px;
+            padding: 40px 20px;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .price-box.visible {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        .price-box:hover {
+            transform: translateY(-5px);
+            border-color: #2a2a2c;
+        }
+        .price-box .duration {
+            font-size: 13px;
+            color: #888;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+        .price-box .price {
+            font-size: 48px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 5px;
+        }
+        .price-box .price span {
+            font-size: 20px;
+            color: #666;
+        }
+        .btn-buy-dark {
+            background: #151515;
+            border: 1px solid #222;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: background 0.2s, border-color 0.2s;
+            display: inline-block;
+            width: 80%;
+        }
+        .btn-buy-dark:hover {
+            background: #1f1f1f;
+            border-color: #333;
+        }
+        .btn-buy-light {
+            background: #fff;
+            border: 1px solid #fff;
+            color: #000;
+            padding: 12px 30px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-block;
+            width: 80%;
+            box-shadow: 0 0 20px rgba(255,255,255,0.1);
+        }
+        .btn-buy-light:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(255,255,255,0.2);
+        }
+        .grid-faq, .grid-contacts {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        @media (min-width: 800px) {
+            .grid-faq { grid-template-columns: repeat(2, 1fr); }
+            .grid-contacts { grid-template-columns: repeat(2, 1fr); }
+        }
+        .standard-card {
+            background: rgba(15, 15, 18, 0.5);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 40px;
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .standard-card.visible {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        .standard-card:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+        .faq-card h3 {
+            font-size: 1.3rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        .faq-card p {
+            color: #94a3b8;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+        .contact-card {
+            text-align: center;
+        }
+        .contact-card h3 {
+            font-size: 1.5rem;
+            color: #94a3b8;
+            margin-bottom: 15px;
+        }
+        .contact-link {
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 2rem;
+            text-decoration: none;
+            background: linear-gradient(90deg, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        .contact-link:hover {
+            transform: scale(1.05);
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+        .footer {
+            text-align: center;
+            padding: 50px 20px;
+            color: #666666;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-fx">
+        <div class="grid-overlay"></div>
+        <div class="stars"></div>
+    </div>
+    
+    <div class="navbar-wrapper">
+        <nav class="navbar">
+            <div class="nav-left">
+                <img src="icon.ico" alt="Logo">
+                <span>ByGone</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" data-ru="Главная" data-en="Home">Главная</a>
+                <a href="#modes" data-ru="Сравнить" data-en="Compare">Сравнить</a>
+                <a href="#pricing" data-ru="Цены" data-en="Pricing">Цены</a>
+                <a href="#faq" data-ru="Вопросы" data-en="FAQ">Вопросы</a>
+                <a href="#contacts" data-ru="Контакты" data-en="Contacts">Контакты</a>
+            </div>
+            <div class="nav-right">
+                <div class="lang-toggle">
+                    <span class="lang-btn lang-active" data-lang="ru">RU</span>
+                    <span class="lang-btn" data-lang="en">EN</span>
+                </div>
+                <a href="https://github.com/SanyaUwU/spoofer/raw/refs/heads/main/ByGoneSpoofer.exe" class="nav-btn" data-ru="Установить" data-en="Install">Установить</a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="hero">
+        <img src="icon.ico" alt="ByGone Spoofer Logo" class="hero-logo">
+        <h1 data-ru="ByGone Spoofer" data-en="ByGone Spoofer">ByGone Spoofer</h1>
+        <h2 data-ru="Профессиональный обход блокировок" data-en="Professional Ban Bypass">Профессиональный обход блокировок</h2>
+        <p data-ru="Ваш главный источник передовых ресурсов для защиты аппаратных данных, маскировки железа и ультимативной анонимности на уровне ядра." data-en="Your main source of advanced resources for hardware data protection, hardware spoofing, and ultimate kernel-level anonymity.">Ваш главный источник передовых ресурсов для защиты аппаратных данных, маскировки железа и ультимативной анонимности на уровне ядра.</p>
+        <div class="hero-buttons">
+            <a href="https://github.com/SanyaUwU/spoofer/raw/refs/heads/main/ByGoneSpoofer.exe" class="btn-primary" data-ru="Скачать спуфер" data-en="Download Spoofer">Скачать спуфер</a>
+            <a href="#pricing" class="btn-secondary" data-ru="Смотреть тарифы" data-en="View Pricing">Смотреть тарифы</a>
+            <a href="#modes" class="btn-text" data-ru="Анализ режимов" data-en="Analyze Modes">Анализ режимов</a>
+        </div>
+    </div>
+
+    <div class="content-section" id="modes">
+        <div class="section-title">
+            <h2 data-ru="Архитектура защиты" data-en="Protection Architecture">Архитектура защиты</h2>
+            <p data-ru="Выберите алгоритм подмены идентификаторов" data-en="Select hardware identifier spoofing algorithm">Выберите алгоритм подмены идентификаторов</p>
+        </div>
+        <div class="grid-modes">
+            <div class="mode-card mode-basic">
+                <div class="card-content">
+                    <div class="mode-header">
+                        <span class="mode-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        </span>
+                        <h3 data-ru="Базовый" data-en="Basic">Базовый</h3>
+                        <p data-ru="10 векторов защиты" data-en="10 protection vectors">10 векторов защиты</p>
+                    </div>
+                    <ul class="mode-list">
+                        <li data-ru="Очистка системных журналов" data-en="System logs cleaning">Очистка системных журналов</li>
+                        <li data-ru="Удаление временных данных" data-en="Temporary data removal">Удаление временных данных</li>
+                        <li data-ru="Очистка сетевого кэша" data-en="Network cache cleaning">Очистка сетевого кэша</li>
+                        <li data-ru="Обновление MAC-адреса" data-en="MAC address update">Обновление MAC-адреса</li>
+                        <li data-ru="Обновление EDID мониторов" data-en="Monitor EDID update">Обновление EDID мониторов</li>
+                        <li data-ru="Очистка системного реестра" data-en="System registry cleaning">Очистка системного реестра</li>
+                        <li data-ru="Сброс сетевых настроек" data-en="Network settings reset">Сброс сетевых настроек</li>
+                        <li data-ru="Очистка ARP-кэша" data-en="ARP cache cleaning">Очистка ARP-кэша</li>
+                        <li data-ru="Смена имени устройства" data-en="Device name change">Смена имени устройства</li>
+                        <li data-ru="Очистка пользовательского кэша" data-en="User cache cleaning">Очистка пользовательского кэша</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mode-card mode-advanced">
+                <div class="card-content">
+                    <div class="mode-header">
+                        <span class="mode-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+                        </span>
+                        <h3 data-ru="Расширенный" data-en="Advanced">Расширенный</h3>
+                        <p data-ru="13 векторов защиты" data-en="13 protection vectors">13 векторов защиты</p>
+                    </div>
+                    <ul class="mode-list">
+                        <li><span class="list-highlight" data-ru="Включает всё из базового ПЛЮС:" data-en="Includes everything from Basic PLUS:">Включает всё из базового ПЛЮС:</span></li>
+                        <li data-ru="Обновление MachineGuid" data-en="MachineGuid update">Обновление MachineGuid</li>
+                        <li data-ru="Обновление SMBIOS/UUID" data-en="SMBIOS/UUID update">Обновление SMBIOS/UUID</li>
+                        <li data-ru="Обновление HwProfileGuid" data-en="HwProfileGuid update">Обновление HwProfileGuid</li>
+                        <li data-ru="Обновление SQM Client ID" data-en="SQM Client ID update">Обновление SQM Client ID</li>
+                        <li data-ru="Обновление Product ID" data-en="Product ID update">Обновление Product ID</li>
+                        <li data-ru="Обновление Build GUID" data-en="Build GUID update">Обновление Build GUID</li>
+                        <li data-ru="Обновление ComputerHardwareId" data-en="ComputerHardwareId update">Обновление ComputerHardwareId</li>
+                        <li data-ru="Обновление SusClient ID" data-en="SusClient ID update">Обновление SusClient ID</li>
+                        <li data-ru="Обновление серийных номеров SCSI" data-en="SCSI serial numbers update">Обновление серийных номеров SCSI</li>
+                        <li data-ru="Обновление MAC на всех адаптерах" data-en="MAC update on all adapters">Обновление MAC на всех адаптерах</li>
+                        <li data-ru="Обновление EDID всех мониторов" data-en="EDID update for all monitors">Обновление EDID всех мониторов</li>
+                        <li data-ru="Смена имени устройства" data-en="Device name change">Смена имени устройства</li>
+                        <li data-ru="Полная очистка системы" data-en="Full system cleanup">Полная очистка системы</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mode-card mode-max">
+                <div class="card-content">
+                    <div class="mode-header">
+                        <span class="mode-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg>
+                        </span>
+                        <h3 data-ru="Максимальный" data-en="Maximum">Максимальный</h3>
+                        <p data-ru="36 векторов защиты" data-en="36 protection vectors">36 векторов защиты</p>
+                    </div>
+                    <ul class="mode-list">
+                        <li><span class="list-highlight" data-ru="Ультимативный арсенал методов." data-en="Ultimate arsenal of methods.">Ультимативный арсенал методов.</span></li>
+                        <li data-ru="Глубокая подмена на уровне ядра." data-en="Deep spoofing at the kernel level.">Глубокая подмена на уровне ядра.</li>
+                        <li data-ru="Блокировка телеметрии античитов." data-en="Anti-cheat telemetry blocking.">Блокировка телеметрии античитов.</li>
+                        <li data-ru="Изоляция HWID запросов." data-en="HWID request isolation.">Изоляция HWID запросов.</li>
+                        <li data-ru="Используйте в самых сложных случаях." data-en="Use in the most difficult cases.">Используйте в самых сложных случаях.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mode-card mode-recovery">
+                <div class="card-content">
+                    <div class="mode-header">
+                        <span class="mode-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"></polyline><polyline points="23 20 23 14 17 14"></polyline><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"></path></svg>
+                        </span>
+                        <h3 data-ru="Восстановление" data-en="Recovery">Восстановление</h3>
+                        <p data-ru="Безопасный откат" data-en="Safe rollback">Безопасный откат</p>
+                    </div>
+                    <ul class="mode-list">
+                        <li data-ru="Возврат MAC-адресов к заводским настройкам." data-en="Return MAC addresses to factory settings.">Возврат MAC-адресов к заводским настройкам.</li>
+                        <li data-ru="Полное удаление следов работы программы." data-en="Complete removal of program traces.">Полное удаление следов работы программы.</li>
+                        <li data-ru="Сброс виртуальных драйверов." data-en="Virtual drivers reset.">Сброс виртуальных драйверов.</li>
+                        <li data-ru="Восстановление оригинальных параметров железа." data-en="Restoring original hardware parameters.">Восстановление оригинальных параметров железа.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-section" id="pricing">
+        <div class="section-title">
+            <h2 data-ru="Тарифы" data-en="Pricing">Тарифы</h2>
+            <p data-ru="Гибкая система подписок" data-en="Flexible subscription system">Гибкая система подписок</p>
+        </div>
+        <div class="grid-prices">
+            <div class="price-box">
+                <div class="duration" data-ru="1 ДЕНЬ" data-en="1 DAY">1 ДЕНЬ</div>
+                <div class="price">100<span>₽</span></div>
+                <a href="https://t.me/Yanwec" target="_blank" class="btn-buy-dark" data-ru="Купить" data-en="Buy">Купить</a>
+            </div>
+            <div class="price-box">
+                <div class="duration" data-ru="7 ДНЕЙ" data-en="7 DAYS">7 ДНЕЙ</div>
+                <div class="price">300<span>₽</span></div>
+                <a href="https://t.me/Yanwec" target="_blank" class="btn-buy-dark" data-ru="Купить" data-en="Buy">Купить</a>
+            </div>
+            <div class="price-box">
+                <div class="duration" data-ru="30 ДНЕЙ" data-en="30 DAYS">30 ДНЕЙ</div>
+                <div class="price">500<span>₽</span></div>
+                <a href="https://t.me/Yanwec" target="_blank" class="btn-buy-light" data-ru="Купить" data-en="Buy">Купить</a>
+            </div>
+            <div class="price-box">
+                <div class="duration" data-ru="90 ДНЕЙ" data-en="90 DAYS">90 ДНЕЙ</div>
+                <div class="price">1000<span>₽</span></div>
+                <a href="https://t.me/Yanwec" target="_blank" class="btn-buy-dark" data-ru="Купить" data-en="Buy">Купить</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-section" id="faq">
+        <div class="section-title">
+            <h2>FAQ</h2>
+            <p data-ru="Часто задаваемые вопросы о ByGone + LARB Spoofer" data-en="Frequently asked questions about ByGone + LARB Spoofer">Часто задаваемые вопросы о ByGone + LARB Spoofer</p>
+        </div>
+        <div class="grid-faq">
+            <div class="standard-card faq-card">
+                <h3 data-ru="❓ Что такое этот инструмент?" data-en="❓ What is this tool?">❓ Что такое этот инструмент?</h3>
+                <p data-ru="Это программа для полной смены аппаратных идентификаторов вашего компьютера. Она позволяет полностью обновить данные, которые система использует для идентификации вашего устройства." data-en="This is a program for completely changing your computer's hardware identifiers. It allows you to completely update the data the system uses to identify your device.">Это программа для полной смены аппаратных идентификаторов вашего компьютера. Она позволяет полностью обновить данные, которые система использует для идентификации вашего устройства.</p>
+            </div>
+            <div class="standard-card faq-card">
+                <h3 data-ru="❓ На каких версиях Windows работает?" data-en="❓ What versions of Windows does it support?">❓ На каких версиях Windows работает?</h3>
+                <p data-ru="Инструмент поддерживает Windows 10 и Windows 11 (все версии)." data-en="The tool supports Windows 10 and Windows 11 (all versions).">Инструмент поддерживает Windows 10 и Windows 11 (все версии).</p>
+            </div>
+            <div class="standard-card faq-card">
+                <h3 data-ru="❓ Нужно ли переустанавливать Windows?" data-en="❓ Do I need to reinstall Windows?">❓ Нужно ли переустанавливать Windows?</h3>
+                <p data-ru="Нет, переустановка Windows не требуется. Всё делается автоматически." data-en="No, reinstalling Windows is not required. Everything is done automatically.">Нет, переустановка Windows не требуется. Всё делается автоматически.</p>
+            </div>
+            <div class="standard-card faq-card">
+                <h3 data-ru="❓ Какой режим выбрать?" data-en="❓ Which mode should I choose?">❓ Какой режим выбрать?</h3>
+                <p data-ru="Рекомендуется начинать с БАЗОВОГО режима. Если он не помог — используйте РАСШИРЕННЫЙ или МАКСИМАЛЬНЫЙ." data-en="It is recommended to start with the BASIC mode. If it doesn't help, use ADVANCED or MAXIMUM.">Рекомендуется начинать с БАЗОВОГО режима. Если он не помог — используйте РАСШИРЕННЫЙ или МАКСИМАЛЬНЫЙ.</p>
+            </div>
+            <div class="standard-card faq-card">
+                <h3 data-ru="❓ Могут ли меня обнаружить?" data-en="❓ Can I be detected?">❓ Могут ли меня обнаружить?</h3>
+                <p data-ru="Инструмент работает на низком уровне системы и не оставляет следов. При этом полностью безопасен для вашего ПК." data-en="The tool works at a low system level and leaves no traces. It is completely safe for your PC.">Инструмент работает на низком уровне системы и не оставляет следов. При этом полностью безопасен для вашего ПК.</p>
+            </div>
+            <div class="standard-card faq-card">
+                <h3 data-ru="❓ Что делать, если ключ не работает?" data-en="❓ What if the key doesn't work?">❓ Что делать, если ключ не работает?</h3>
+                <p data-ru="Сразу пишите в Telegram нашей поддержки — решим проблему в течение 5-10 минут." data-en="Write to our Telegram support immediately - we will solve the problem within 5-10 minutes.">Сразу пишите в Telegram нашей поддержки — решим проблему в течение 5-10 минут.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-section" id="contacts">
+        <div class="section-title">
+            <h2 data-ru="Связь с нами" data-en="Contact Us">Связь с нами</h2>
+            <p data-ru="Прямые контакты администрации" data-en="Direct administration contacts">Прямые контакты администрации</p>
+        </div>
+        <div class="grid-contacts">
+            <div class="standard-card contact-card">
+                <h3>Owner</h3>
+                <a href="https://t.me/Yanwec" target="_blank" class="contact-link">@Yanwec</a>
+            </div>
+            <div class="standard-card contact-card">
+                <h3>Reseller</h3>
+                <a href="https://t.me/qweqeqeqe756" target="_blank" class="contact-link">@qweqeqeqe756</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer" data-ru="&copy; 2026 ByGone Spoofer. Все права защищены." data-en="&copy; 2026 ByGone Spoofer. All rights reserved.">
+        &copy; 2026 ByGone Spoofer. Все права защищены.
+    </div>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        document.querySelectorAll('.mode-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -5;
+                const rotateY = ((x - centerX) / centerX) * 5;
+                
+                card.style.transform = `translateY(-10px) scale(1.02) perspective(1500px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1) perspective(1500px) rotateX(0deg) rotateY(0deg)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+                }, 10);
+            });
+            
+            card.addEventListener('mouseenter', () => {
+                card.style.transition = 'transform 0.1s ease, box-shadow 0.3s ease';
+            });
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.mode-card, .price-box, .standard-card, .section-title').forEach(el => {
+            observer.observe(el);
+        });
+
+        const langBtns = document.querySelectorAll('.lang-btn');
+        const translatableElements = document.querySelectorAll('[data-ru]');
+        
+        langBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const lang = e.target.getAttribute('data-lang');
+                
+                langBtns.forEach(b => b.classList.remove('lang-active'));
+                e.target.classList.add('lang-active');
+                
+                translatableElements.forEach(el => {
+                    el.innerHTML = el.getAttribute(`data-${lang}`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
