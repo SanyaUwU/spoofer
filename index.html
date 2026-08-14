@@ -6,6 +6,356 @@
     <title>ByGone Spoofer — Best Spoofer</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
+
+        /* ===== ENHANCED DESIGN ===== */
+
+        /* Smooth scroll with custom easing */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #22d3ee, #a855f7);
+            border-radius: 3px;
+        }
+
+        /* Animated gradient background */
+        .bg-gradient-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .orb-1 {
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, #22d3ee, transparent 70%);
+            top: -200px; left: -100px;
+            animation: orbFloat 20s ease-in-out infinite;
+        }
+        .orb-2 {
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, #a855f7, transparent 70%);
+            bottom: -100px; right: -100px;
+            animation: orbFloat 25s ease-in-out infinite reverse;
+        }
+        .orb-3 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, #f43f5e, transparent 70%);
+            top: 50%; left: 50%;
+            animation: orbFloat 30s ease-in-out infinite;
+        }
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(50px, -30px) scale(1.1); }
+            66% { transform: translate(-30px, 50px) scale(0.9); }
+        }
+
+        /* Enhanced navbar */
+        .navbar {
+            background: rgba(10, 10, 15, 0.7);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+        .navbar.scrolled {
+            background: rgba(10, 10, 15, 0.9);
+            padding: 8px 24px;
+        }
+
+        /* Glow text effect */
+        .glow-text {
+            text-shadow: 0 0 40px rgba(34, 211, 238, 0.3), 0 0 80px rgba(168, 85, 247, 0.2);
+        }
+
+        /* Enhanced hero */
+        .hero h1 {
+            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 50%, #ffffff 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
+        }
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        /* Enhanced buttons */
+        .btn-primary {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.6s;
+        }
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(255, 255, 255, 0.2), 0 0 60px rgba(34, 211, 238, 0.15);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-secondary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(34, 211, 238, 0.1), rgba(168, 85, 247, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .btn-secondary:hover::before {
+            opacity: 1;
+        }
+        .btn-secondary:hover {
+            border-color: rgba(34, 211, 238, 0.4);
+            box-shadow: 0 0 30px rgba(34, 211, 238, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Enhanced price cards */
+        .price-box {
+            background: linear-gradient(145deg, rgba(15, 15, 20, 0.9) 0%, rgba(8, 8, 12, 0.95) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .price-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        }
+        .price-box::after {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 17px;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(34, 211, 238, 0.3), rgba(168, 85, 247, 0.2), transparent 60%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        .price-box:hover::after {
+            opacity: 1;
+        }
+        .price-box:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(34, 211, 238, 0.15);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(34, 211, 238, 0.08);
+        }
+        .price-box .price {
+            background: linear-gradient(135deg, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .price-box .duration {
+            letter-spacing: 3px;
+            background: linear-gradient(90deg, #64748b, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Featured price (30 days) */
+        .price-box:nth-child(3) {
+            border-color: rgba(34, 211, 238, 0.2);
+            box-shadow: 0 0 40px rgba(34, 211, 238, 0.05);
+        }
+        .price-box:nth-child(3)::before {
+            background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.4), transparent);
+        }
+        .price-box:nth-child(3) .duration {
+            background: linear-gradient(90deg, #22d3ee, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Enhanced mode card */
+        .mode-card {
+            background: linear-gradient(145deg, rgba(15, 15, 22, 0.9) 0%, rgba(8, 8, 14, 0.95) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .mode-card:hover {
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.6), 
+                0 0 60px rgba(34, 211, 238, 0.1),
+                inset 0 0 30px rgba(34, 211, 238, 0.02);
+        }
+
+        /* Enhanced FAQ cards */
+        .standard-card {
+            background: linear-gradient(145deg, rgba(15, 15, 20, 0.6) 0%, rgba(8, 8, 12, 0.7) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            position: relative;
+            overflow: hidden;
+        }
+        .standard-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 3px; height: 100%;
+            background: linear-gradient(180deg, #22d3ee, #a855f7);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .standard-card:hover::before {
+            opacity: 1;
+        }
+        .standard-card:hover {
+            border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(34, 211, 238, 0.05);
+        }
+
+        /* Section titles */
+        .section-title h2 {
+            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 50%, #ffffff 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 4s linear infinite;
+        }
+
+        /* Contact links glow */
+        .contact-link {
+            position: relative;
+            display: inline-block;
+        }
+        .contact-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 2px;
+            background: linear-gradient(90deg, #22d3ee, #a855f7);
+            transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .contact-link:hover::after {
+            width: 100%;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(180deg, transparent, rgba(10, 10, 15, 0.5));
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        /* Typing cursor effect for hero */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+            color: #22d3ee;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        /* Particle dots */
+        .particle {
+            position: fixed;
+            width: 2px; height: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            animation: particleFloat linear infinite;
+        }
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-10vh) translateX(50px); opacity: 0; }
+        }
+
+        /* Buy buttons enhanced */
+        .btn-buy-dark, .btn-buy-light {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .btn-buy-dark:hover, .btn-buy-light:hover {
+            transform: translateY(-2px) scale(1.05);
+        }
+        .btn-buy-light {
+            background: linear-gradient(135deg, #ffffff, #f1f5f9);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1), 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .btn-buy-light:hover {
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.2), 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        /* Nav button enhanced */
+        .nav-btn {
+            background: linear-gradient(135deg, #ffffff, #e2e8f0);
+            position: relative;
+            overflow: hidden;
+        }
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+            transition: left 0.5s;
+        }
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+
+        /* Responsive price cards */
+        @media (max-width: 800px) {
+            .grid-prices { 
+                grid-template-columns: 1fr; 
+                max-width: 320px;
+                gap: 20px;
+            }
+            .price-box {
+                padding: 30px 20px;
+            }
+        }
+
+        /* Loading animation for cards */
+        @keyframes cardReveal {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .mode-card.visible, .price-box.visible, .standard-card.visible {
+            animation: cardReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
         * {
             box-sizing: border-box;
             margin: 0;
@@ -166,26 +516,72 @@
         }
         .lang-toggle {
             display: flex;
-            gap: 12px;
+            align-items: center;
+            gap: 10px;
             font-weight: 700;
-            font-size: 14px;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 6px 12px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 13px;
+            user-select: none;
         }
-        .lang-btn {
+        .lang-label {
             color: #475569;
-            cursor: pointer;
             transition: all 0.3s ease;
+            cursor: default;
+            letter-spacing: 1px;
         }
-        .lang-btn:hover {
-            color: #94a3b8;
-        }
-        .lang-active {
+        .lang-label.active {
             color: #ffffff;
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
-            pointer-events: none;
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
+        }
+        .lang-switch {
+            cursor: pointer;
+            padding: 4px;
+        }
+        .lang-switch-track {
+            width: 44px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 
+                inset 0 2px 4px rgba(0, 0, 0, 0.3),
+                0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+        .lang-switch-track:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 
+                inset 0 2px 4px rgba(0, 0, 0, 0.3),
+                0 0 15px rgba(34, 211, 238, 0.15);
+        }
+        .lang-switch-track.active {
+            background: linear-gradient(135deg, rgba(34, 211, 238, 0.2), rgba(168, 85, 247, 0.2));
+            border-color: rgba(34, 211, 238, 0.4);
+            box-shadow: 
+                inset 0 2px 4px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(34, 211, 238, 0.2);
+        }
+        .lang-switch-thumb {
+            width: 18px;
+            height: 18px;
+            background: linear-gradient(145deg, #ffffff, #e2e8f0);
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 
+                0 2px 6px rgba(0, 0, 0, 0.3),
+                0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        .lang-switch-track.active .lang-switch-thumb {
+            left: 22px;
+            background: linear-gradient(145deg, #22d3ee, #a855f7);
+            box-shadow: 
+                0 2px 6px rgba(0, 0, 0, 0.3),
+                0 0 15px rgba(34, 211, 238, 0.5);
         }
         .nav-btn {
             background: #ffffff;
@@ -548,13 +944,14 @@
         }
         .grid-prices {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-            max-width: 1100px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1000px;
             margin: 0 auto;
+            align-items: stretch;
         }
-        @media (min-width: 800px) {
-            .grid-prices { grid-template-columns: repeat(4, 1fr); }
+        @media (max-width: 800px) {
+            .grid-prices { grid-template-columns: 1fr; max-width: 320px; }
         }
         .price-box {
             background: #09090b;
@@ -716,6 +1113,9 @@
     <div class="background-fx">
         <div class="grid-overlay"></div>
         <div class="stars"></div>
+        <div class="bg-gradient-orb orb-1"></div>
+        <div class="bg-gradient-orb orb-2"></div>
+        <div class="bg-gradient-orb orb-3"></div>
     </div>
     
     <div class="navbar-wrapper">
@@ -733,8 +1133,13 @@
             </div>
             <div class="nav-right">
                 <div class="lang-toggle">
-                    <span class="lang-btn lang-active" data-lang="ru">RU</span>
-                    <span class="lang-btn" data-lang="en">EN</span>
+                    <span class="lang-label" data-lang="ru">RU</span>
+                    <div class="lang-switch">
+                        <div class="lang-switch-track">
+                            <div class="lang-switch-thumb"></div>
+                        </div>
+                    </div>
+                    <span class="lang-label" data-lang="en">EN</span>
                 </div>
                 <a href="https://github.com/SanyaUwU/spoofer/releases/download/v2.3/ByGoneSpoofer.exe" class="nav-btn" data-ru="Установить" data-en="Install">Установить</a>
             </div>
@@ -743,7 +1148,7 @@
 
     <div class="hero" id="home">
         <img src="icon.ico" alt="ByGone Spoofer Logo" class="hero-logo">
-        <h1 data-ru="ByGone Spoofer" data-en="ByGone Spoofer">ByGone Spoofer</h1>
+        <h1 class="glow-text" data-ru="ByGone Spoofer" data-en="ByGone Spoofer">ByGone Spoofer</h1>
         <h2 data-ru="Профессиональный обход блокировок" data-en="Professional Ban Bypass">Профессиональный обход блокировок</h2>
         <p data-ru="Полная смена аппаратных идентификаторов, очистка следов активности и откат системы. Работает на Windows 10/11 без переустановки ОС." data-en="Full hardware identifier swap, activity trace cleanup, and system rollback. Works on Windows 10/11 without OS reinstallation.">Полная смена аппаратных идентификаторов, очистка следов активности и откат системы. Работает на Windows 10/11 без переустановки ОС.</p>
         <div class="hero-buttons">
@@ -877,15 +1282,37 @@
     </div>
 
     <script>
+        // Smooth scroll with custom easing
+        function smoothScrollTo(targetY, duration = 800) {
+            const startY = window.scrollY;
+            const diff = targetY - startY;
+            let startTime = null;
+
+            function easeInOutCubic(t) {
+                return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+            }
+
+            function step(timestamp) {
+                if (!startTime) startTime = timestamp;
+                const progress = Math.min((timestamp - startTime) / duration, 1);
+                const eased = easeInOutCubic(progress);
+                window.scrollTo(0, startY + diff * eased);
+                if (progress < 1) {
+                    requestAnimationFrame(step);
+                }
+            }
+
+            requestAnimationFrame(step);
+        }
+
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if(target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    const offset = 100; // navbar height + padding
+                    const targetY = target.getBoundingClientRect().top + window.scrollY - offset;
+                    smoothScrollTo(targetY, 1000);
                 }
             });
         });
@@ -939,21 +1366,85 @@
             observer.observe(el);
         });
 
-        const langBtns = document.querySelectorAll('.lang-btn');
+        const langSwitch = document.querySelector('.lang-switch');
+        const langSwitchTrack = document.querySelector('.lang-switch-track');
+        const langLabels = document.querySelectorAll('.lang-label');
         const translatableElements = document.querySelectorAll('[data-ru]');
-        
-        langBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const lang = e.target.getAttribute('data-lang');
-                
-                langBtns.forEach(b => b.classList.remove('lang-active'));
-                e.target.classList.add('lang-active');
-                
-                translatableElements.forEach(el => {
-                    el.innerHTML = el.getAttribute(`data-${lang}`);
-                });
+        let currentLang = 'ru';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+
+            if (lang === 'en') {
+                langSwitchTrack.classList.add('active');
+            } else {
+                langSwitchTrack.classList.remove('active');
+            }
+
+            langLabels.forEach(label => {
+                if (label.getAttribute('data-lang') === lang) {
+                    label.classList.add('active');
+                } else {
+                    label.classList.remove('active');
+                }
             });
+
+            translatableElements.forEach(el => {
+                const translated = el.getAttribute(`data-${lang}`);
+                if (translated) {
+                    el.innerHTML = translated;
+                }
+            });
+        }
+
+        setLanguage('ru');
+
+        langSwitch.addEventListener('click', () => {
+            setLanguage(currentLang === 'ru' ? 'en' : 'ru');
         });
-    </script>
+
+    
+        // Floating particles
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+            particle.style.animationDelay = Math.random() * 10 + 's';
+            particle.style.opacity = Math.random() * 0.5 + 0.1;
+            particle.style.width = particle.style.height = (Math.random() * 3 + 1) + 'px';
+            document.body.appendChild(particle);
+        }
+
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth reveal on scroll with stagger
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.mode-card, .price-box, .standard-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+            revealObserver.observe(el);
+        });
+</script>
 </body>
 </html>
